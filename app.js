@@ -30,24 +30,27 @@ let state = {
 };
 
 // --- CART FUNCTIONS ---
-// Stripe Checkout - Configuration avec Price IDs réels
+// Stripe Payment Links - URLs de paiement direct
 const STRIPE_PRODUCTS = {
     p1: {
         name: "ULTRA Pull Mohair Beige",
-        price: 8495, // en centimes
+        price: 8495,
         priceId: "price_1Sq7AwRxBBzO6509ZQh8uVzi",
+        paymentLink: "https://buy.stripe.com/test_4gMdRb9ha38d81Ic9r7g403",
         image: "https://weyzclothing.com/cdn/shop/files/beige-ultra-mohair-knit-weyz-01.jpg?v=1765374015"
     },
     p2: {
         name: "UNBROKEN Pull Pink",
-        price: 8495, // en centimes
+        price: 8495,
         priceId: "price_1Sq7BQRxBBzO6509zJgSZzc9",
+        paymentLink: "https://buy.stripe.com/test_7sYcN7bpidMRa9QflD7g402",
         image: "images/unbroken-pink-knit.png"
     },
     bundle: {
         name: "UNBROKEN Pull Pink + ULTRA Pull Mohair Beige",
-        price: 11995, // en centimes
+        price: 11995,
         priceId: "price_1Sq7CARxBBzO6509gyFDch9T",
+        paymentLink: "https://buy.stripe.com/test_eVqeVfbpi5gl95MgpH7g401",
         image: "https://weyzclothing.com/cdn/shop/files/beige-ultra-mohair-knit-weyz-01.jpg?v=1765374015"
     }
 };
