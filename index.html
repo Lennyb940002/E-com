@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>WEYZ | LIMITED DROP</title>
+    <meta name="description"
+        content="WEYZ - Streetwear Premium. Découvrez notre collection exclusive de vêtements haut de gamme. Limited drops, qualité exceptionnelle.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+
+<body class="antialiased">
+
+    <!-- Notification Toast -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Header Minimaliste -->
+    <header class="header-main header-home">
+        <a href="index.html" class="logo"><img src="logo.png" alt="WEYZ" class="logo-img"></a>
+        <div class="header-actions">
+            <button onclick="toggleCart()" class="cart-btn glass">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                    <path d="M3 6h18"></path>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+                <span id="cart-count" class="cart-count">0</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="split-container">
+
+        <!-- PANE 1: ROSE -->
+        <section class="split-pane pane-light group">
+            <a href="product.html?id=p1" class="pane-link">
+                <picture class="pane-bg">
+                    <source
+                        srcset="https://weyzclothing.com/cdn/shop/files/beige-ultra-mohair-knit-weyz-01.jpg?v=1765374015"
+                        type="image/webp">
+                    <img src="https://weyzclothing.com/cdn/shop/files/beige-ultra-mohair-knit-weyz-01.jpg?v=1765374015"
+                        class="pane-img" alt="Ultra Mohair Beige" loading="eager">
+                </picture>
+            </a>
+
+            <div class="pane-content">
+                <h2 class="product-title">"ULTRA" PULL MOHAIR BEIGE</h2>
+                <p class="product-story">Le pull qui fait l'unanimité. Mohair premium, coupe boxy signature.</p>
+                <p class="product-price">
+                    84,95 € <span class="discount-tag">-37%</span>
+                    <span class="price-old">135,00 €</span>
+                </p>
+
+                <!-- Quick Add Desktop -->
+                <div class="quick-add-desktop">
+                    <button onclick="addToCart('p1', 'S')" class="size-btn size-btn-light">S</button>
+                    <button onclick="addToCart('p1', 'M')" class="size-btn size-btn-light">M</button>
+                    <button onclick="addToCart('p1', 'L')" class="size-btn size-btn-light stock-low">L</button>
+                    <button disabled class="size-btn size-btn-light size-disabled">XL</button>
+                </div>
+
+                <!-- CTA Mobile -->
+                <button onclick="openBottomSheet('p1')" class="cta-mobile cta-dark">Sélectionner ma taille</button>
+
+                <!-- Link to product page -->
+                <a href="product.html?id=p1" class="product-link">→ Découvrir le produit</a>
+            </div>
+        </section>
+
+        <!-- PANE 2: UNBROKEN PINK -->
+        <section class="split-pane pane-dark group">
+            <a href="product-unbroken.html" class="pane-link">
+                <picture class="pane-bg">
+                    <img src="images/unbroken-pink-knit.png" class="pane-img pane-img-dark" alt="UNBROKEN Pink Knit"
+                        loading="eager">
+                </picture>
+            </a>
+
+            <div class="pane-content">
+                <h2 class="product-title">"UNBROKEN" PULL PINK</h2>
+                <p class="product-story">Le pull statement. Damier rose iconic, coupe oversized.</p>
+                <p class="product-price">
+                    84,95 €
+                    <span class="price-old">120,00 €</span>
+                </p>
+
+                <!-- Quick Add Desktop -->
+                <div class="quick-add-desktop">
+                    <button onclick="addToCart('p2', 'S')" class="size-btn size-btn-dark">S</button>
+                    <button onclick="addToCart('p2', 'M')" class="size-btn size-btn-dark">M</button>
+                    <button onclick="addToCart('p2', 'L')" class="size-btn size-btn-dark">L</button>
+                    <button onclick="addToCart('p2', 'XL')" class="size-btn size-btn-dark">XL</button>
+                </div>
+
+                <!-- CTA Mobile -->
+                <button onclick="openBottomSheet('p2')" class="cta-mobile cta-light">Choisir ma taille</button>
+
+                <!-- Link to product page -->
+                <a href="product-unbroken.html" class="product-link product-link-light">→ Découvrir le produit</a>
+            </div>
+        </section>
+
+        <!-- BUNDLE BADGE CENTRAL -->
+        <div class="bundle-badge-wrapper">
+            <button onclick="openBundleModal()" class="bundle-badge bundle-pulse">
+                <span class="bundle-question">Tu veux les deux ?</span>
+                <div class="bundle-price-row">
+                    <span class="bundle-price-new">119,95 €</span>
+                    <span class="bundle-price-old">169,90 €</span>
+                </div>
+                <span class="bundle-click-cta">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5" />
+                    </svg>
+                    clique ici
+                </span>
+            </button>
+        </div>
+
+    </main>
+
+    <!-- BOTTOM SHEET MOBILE -->
+    <div id="bottom-sheet" class="bottom-sheet-overlay">
+        <div id="bs-overlay" onclick="closeBottomSheet()" class="bs-backdrop"></div>
+        <div class="bottom-sheet">
+            <div class="bs-handle"></div>
+            <h3 id="bs-title" class="bs-title">Dernière étape</h3>
+            <p class="bs-subtitle">Choisis ta taille pour bloquer ton prix</p>
+            <div id="bs-sizes" class="bs-sizes"></div>
+            <button id="bs-submit" class="bs-submit">Ajouter au panier - 84,95 €</button>
+            <p class="bs-trust">Livraison & retours gratuits</p>
+        </div>
+    </div>
+
+    <!-- SIDE CART -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h2 class="cart-title">Ton Panier</h2>
+            <button onclick="toggleCart()" class="cart-close">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M18 6L6 18M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <p class="cart-empty">Ton panier est vide pour le moment.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>TOTAL À RÉGLER</span>
+                <span id="cart-total">0,00 €</span>
+            </div>
+            <button class="checkout-btn">Passer commande</button>
+            <p class="cart-trust">Paiement 100% sécurisé · Livraison 48h</p>
+            <div class="payment-icons">
+                <img src="https://www.vectorlogo.zone/logos/visa/visa-ar21.svg" alt="Visa">
+                <img src="https://www.vectorlogo.zone/logos/mastercard/mastercard-ar21.svg" alt="Mastercard">
+                <img src="https://www.vectorlogo.zone/logos/apple_pay/apple_pay-ar21.svg" alt="Apple Pay">
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL BUNDLE -->
+    <div id="bundle-modal" class="bundle-modal-overlay">
+        <div class="bundle-modal-backdrop" onclick="closeBundleModal()"></div>
+        <div class="bundle-modal">
+            <button onclick="closeBundleModal()" class="modal-close">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <h2 class="bundle-modal-title">COMMANDER LES DEUX</h2>
+            <p class="bundle-modal-subtitle">Sélectionne tes tailles maintenant et économise 50€.</p>
+
+            <div class="bundle-products">
+                <div class="bundle-product">
+                    <p class="bundle-product-label">1. Ultra Mohair Beige (84,95 €)</p>
+                    <div class="bundle-sizes" id="bundle-size-1">
+                        <button class="bundle-size-btn" data-size="S">S</button>
+                        <button class="bundle-size-btn" data-size="M">M</button>
+                        <button class="bundle-size-btn" data-size="L">L</button>
+                    </div>
+                </div>
+                <div class="bundle-product">
+                    <p class="bundle-product-label">2. W-Pant Baggy Noir (84,95 €)</p>
+                    <div class="bundle-sizes" id="bundle-size-2">
+                        <button class="bundle-size-btn" data-size="S">S</button>
+                        <button class="bundle-size-btn" data-size="M">M</button>
+                        <button class="bundle-size-btn" data-size="L">L</button>
+                        <button class="bundle-size-btn" data-size="XL">XL</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bundle-pricing">
+                <span class="bundle-final-price">119,95 €</span>
+                <span class="bundle-crossed-price">169,90 €</span>
+                <span class="bundle-discount-label">-30%</span>
+            </div>
+            <button onclick="addBundleToCart()" class="bundle-submit">PAYER MAINTENANT</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

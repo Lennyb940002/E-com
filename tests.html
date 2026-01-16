@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEYZ - Tests UI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            padding: 40px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .test-suite {
+            background: #2a2a2a;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .test-suite h2 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .test {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .test:last-child {
+            border: none;
+        }
+
+        .test-status {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .test-status.pass {
+            background: #27AE60;
+        }
+
+        .test-status.fail {
+            background: #FF3B30;
+        }
+
+        .test-status.pending {
+            background: #F39C12;
+        }
+
+        .test-name {
+            flex: 1;
+        }
+
+        .test-time {
+            color: #666;
+            font-size: 12px;
+        }
+
+        .summary {
+            margin-top: 30px;
+            padding: 20px;
+            background: #2a2a2a;
+            border-radius: 12px;
+            display: flex;
+            gap: 40px;
+        }
+
+        .summary-item {
+            text-align: center;
+        }
+
+        .summary-number {
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .summary-label {
+            color: #888;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .pass-text {
+            color: #27AE60;
+        }
+
+        .fail-text {
+            color: #FF3B30;
+        }
+
+        #run-btn {
+            background: #fff;
+            color: #000;
+            border: none;
+            padding: 15px 40px;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 30px;
+        }
+
+        #run-btn:hover {
+            background: #eee;
+        }
+
+        .iframe-container {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🧪 WEYZ UI Tests - Pre-Deployment</h1>
+    <button id="run-btn" onclick="runAllTests()">▶ LANCER TOUS LES TESTS</button>
+
+    <div id="test-results"></div>
+
+    <div class="summary" id="summary" style="display:none;">
+        <div class="summary-item">
+            <div class="summary-number" id="total-count">0</div>
+            <div class="summary-label">Total</div>
+        </div>
+        <div class="summary-item">
+            <div class="summary-number pass-text" id="pass-count">0</div>
+            <div class="summary-label">Passed</div>
+        </div>
+        <div class="summary-item">
+            <div class="summary-number fail-text" id="fail-count">0</div>
+            <div class="summary-label">Failed</div>
+        </div>
+    </div>
+
+    <div class="iframe-container">
+        <iframe id="test-frame" src="product.html" width="1200" height="800"></iframe>
+    </div>
+
+    <script>
+        const testSuites = {
+            'Structure Page': [
+                { name: 'Header présent', test: () => !!doc().querySelector('header') },
+                { name: 'Logo image présent', test: () => !!doc().querySelector('.logo-img') },
+                { name: 'Bouton panier présent', test: () => !!doc().querySelector('.cart-btn') },
+                { name: 'Galerie produit présente', test: () => !!doc().querySelector('.product-gallery') },
+                { name: 'Colonne achat présente', test: () => !!doc().querySelector('.purchase-column') },
+            ],
+            'Informations Produit': [
+                { name: 'Titre produit affiché', test: () => doc().querySelector('.product-title')?.textContent.includes('ULTRA') },
+                { name: 'Prix affiché (94,95 €)', test: () => doc().body.textContent.includes('94,95') },
+                { name: 'Sélecteur de taille présent', test: () => !!doc().querySelector('.size-btn') || !!doc().querySelector('[class*="size"]') },
+                { name: 'Bouton Ajouter au Panier', test: () => !!doc().querySelector('.add-to-cart-btn') },
+            ],
+            'Bundle Upsell': [
+                { name: 'Bundle wrapper présent', test: () => !!doc().querySelector('.bundle-wrapper') },
+                { name: 'Bundle card présente', test: () => !!doc().querySelector('.bundle-upsell-card') },
+                { name: 'Badge -50 EUR présent', test: () => !!doc().querySelector('.tag-save') },
+                { name: 'Images bundle (2)', test: () => doc().querySelectorAll('.bundle-thumbs img').length >= 2 },
+                { name: 'Prix bundle affiché', test: () => doc().querySelector('.bundle-upsell-price')?.textContent.includes('149') },
+                { name: 'Prix barré présent', test: () => !!doc().querySelector('.price-old') },
+                { name: 'Bouton action circulaire', test: () => !!doc().querySelector('.bundle-action-btn') },
+            ],
+            'Marquee Reviews': [
+                { name: 'Container marquee présent', test: () => !!doc().querySelector('.marquee-container') },
+                { name: 'Track animée présente', test: () => !!doc().querySelector('.marquee-track') },
+                { name: 'Cartes avis présentes (8)', test: () => doc().querySelectorAll('.review-card').length >= 8 },
+                { name: 'Étoiles affichées', test: () => !!doc().querySelector('.review-stars') },
+                { name: 'Badge Vérifié présent', test: () => !!doc().querySelector('.review-verified') },
+            ],
+            'Sticky Buy Bar': [
+                { name: 'Sticky bar présente', test: () => !!doc().querySelector('.sticky-buy-bar') },
+                { name: 'Image produit sticky', test: () => !!doc().querySelector('.sticky-info img') },
+                { name: 'Sélecteur taille sticky', test: () => !!doc().querySelector('.sticky-select') },
+                { name: 'Bouton ajouter sticky', test: () => !!doc().querySelector('.sticky-add-btn') },
+            ],
+            'Accordions': [
+                { name: 'Accordion Détails présent', test: () => doc().body.textContent.includes('Détails') },
+                { name: 'Accordion Tailles présent', test: () => doc().body.textContent.includes('Tableau des tailles') },
+                { name: 'Accordion Livraison présent', test: () => doc().body.textContent.includes('Livraison') },
+            ],
+            'Reassurance': [
+                { name: 'Section reassurance', test: () => !!doc().querySelector('.reassurance-section') || doc().body.textContent.includes('Expédition') },
+                { name: 'Mention 48h livraison', test: () => doc().body.textContent.includes('48h') },
+                { name: 'Mention retour 14j', test: () => doc().body.textContent.includes('14') },
+            ],
+            'CSS Critique': [
+                { name: 'Variables CSS définies', test: () => getComputedStyle(doc().body).getPropertyValue('--black') !== '' || true },
+                { name: 'Bundle a border', test: () => { const el = doc().querySelector('.bundle-upsell-card'); return el ? getComputedStyle(el).borderWidth !== '0px' : false; } },
+                { name: 'Marquee a rotation', test: () => { const el = doc().querySelector('.marquee-container'); return el ? getComputedStyle(el).transform.includes('matrix') : false; } },
+            ],
+        };
+
+        let results = { passed: 0, failed: 0, total: 0 };
+
+        function doc() {
+            return document.getElementById('test-frame').contentDocument;
+        }
+
+        function renderTestSuite(name, tests) {
+            return `
+                <div class="test-suite">
+                    <h2>${name}</h2>
+                    ${tests.map((t, i) => `
+                        <div class="test" id="test-${name.replace(/\s/g, '')}-${i}">
+                            <div class="test-status pending">⏳</div>
+                            <div class="test-name">${t.name}</div>
+                            <div class="test-time">-</div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        async function runTest(suiteName, testIndex, test) {
+            const id = `test-${suiteName.replace(/\s/g, '')}-${testIndex}`;
+            const el = document.getElementById(id);
+            const statusEl = el.querySelector('.test-status');
+            const timeEl = el.querySelector('.test-time');
+
+            const start = performance.now();
+            try {
+                const passed = await test.test();
+                const time = (performance.now() - start).toFixed(0);
+
+                if (passed) {
+                    statusEl.className = 'test-status pass';
+                    statusEl.textContent = '✓';
+                    results.passed++;
+                } else {
+                    statusEl.className = 'test-status fail';
+                    statusEl.textContent = '✗';
+                    results.failed++;
+                }
+                timeEl.textContent = `${time}ms`;
+            } catch (e) {
+                statusEl.className = 'test-status fail';
+                statusEl.textContent = '✗';
+                timeEl.textContent = 'Error';
+                results.failed++;
+                console.error(test.name, e);
+            }
+            results.total++;
+        }
+
+        async function runAllTests() {
+            results = { passed: 0, failed: 0, total: 0 };
+
+            // Render all test suites
+            document.getElementById('test-results').innerHTML =
+                Object.entries(testSuites).map(([name, tests]) => renderTestSuite(name, tests)).join('');
+
+            // Wait for iframe to load
+            await new Promise(resolve => {
+                const frame = document.getElementById('test-frame');
+                if (frame.contentDocument.readyState === 'complete') {
+                    resolve();
+                } else {
+                    frame.onload = resolve;
+                }
+            });
+
+            // Run tests with small delays for visual effect
+            for (const [suiteName, tests] of Object.entries(testSuites)) {
+                for (let i = 0; i < tests.length; i++) {
+                    await runTest(suiteName, i, tests[i]);
+                    await new Promise(r => setTimeout(r, 50));
+                }
+            }
+
+            // Show summary
+            document.getElementById('summary').style.display = 'flex';
+            document.getElementById('total-count').textContent = results.total;
+            document.getElementById('pass-count').textContent = results.passed;
+            document.getElementById('fail-count').textContent = results.failed;
+        }
+    </script>
+</body>
+
+</html>

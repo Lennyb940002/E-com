@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>"UNBROKEN" PULL PINK | WEYZ</title>
+    <meta name="description"
+        content="Découvrez le Pull UNBROKEN Pink WEYZ. Damier rose iconic, coupe oversized. Livraison rapide, retours gratuits.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Notification Toast -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <header class="header-product">
+        <div class="header-container">
+            <a href="index.html" class="logo"><img src="logo.png" alt="WEYZ" class="logo-img"></a>
+            <span class="header-shipping">Livraison 48h offerte dès aujourd'hui</span>
+
+            <div class="header-actions">
+                <button class="header-icon-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+                <button onclick="toggleCart()" class="header-icon-btn cart-btn-product">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <span id="cart-count" class="cart-count-product">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="product-container">
+            <!-- Gallery -->
+            <div class="product-gallery-wrapper">
+                <button class="carousel-nav-btn prev" id="prev-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <button class="carousel-nav-btn next" id="next-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+
+                <div class="product-media-list" id="main-media-list">
+                    <div class="product-media-item"><img src="images/unbroken-pink-knit.png"
+                            alt="UNBROKEN Pink Photo 1"></div>
+                    <div class="product-media-item"><img src="images/unbroken-pink-knit.png"
+                            alt="UNBROKEN Pink Photo 2"></div>
+                    <div class="product-media-item"><img src="images/unbroken-pink-knit.png"
+                            alt="UNBROKEN Pink Photo 3"></div>
+                </div>
+
+                <div class="carousel-dots" id="carousel-dots">
+                    <div class="dot active"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div id="product-buy-zone" class="product-buy-zone">
+                <div class="product-title-section">
+                    <h1 class="product-main-title">"UNBROKEN" PULL PINK - ÉDITION LIMITÉE</h1>
+                </div>
+
+                <div class="price-container">
+                    <span class="price-current">94,95 €</span>
+                </div>
+
+                <div class="variant-selects">
+                    <span class="form-label">Taille</span>
+                    <div class="size-pills">
+                        <input type="radio" id="xs" name="size" value="XS" disabled>
+                        <label for="xs" class="size-pill">XS</label>
+
+                        <input type="radio" id="s" name="size" value="S" checked>
+                        <label for="s" class="size-pill">S</label>
+
+                        <input type="radio" id="m" name="size" value="M">
+                        <label for="m" class="size-pill">M</label>
+
+                        <input type="radio" id="l" name="size" value="L">
+                        <label for="l" class="size-pill">L</label>
+
+                        <input type="radio" id="xl" name="size" value="XL">
+                        <label for="xl" class="size-pill">XL</label>
+                    </div>
+                    <p class="size-help">
+                        Tu as un doute ? <span class="size-guide-link"
+                            onclick="document.getElementById('Details-size').setAttribute('open', ''); document.getElementById('Details-size').scrollIntoView({behavior: 'smooth'});">Clique
+                            ici pour trouver ta taille en 30s</span>
+                    </p>
+                </div>
+
+                <button type="button" class="add-to-cart-btn" id="main-atc-btn" onclick="addToCart()">
+                    <span>Ajouter au panier</span>
+                    <span class="atc-separator">|</span>
+                    <span>94,95 €</span>
+                </button>
+
+                <!-- Bundle Upsell Card - Extravagant XL -->
+                <div class="bundle-wrapper">
+                    <span class="tag-save">- 50 EUR</span>
+
+                    <div class="bundle-upsell-card" id="open-bundle-modal" onclick="openBundleModal()">
+                        <div class="bundle-thumbs">
+                            <img src="https://weyzclothing.com/cdn/shop/files/beige-ultra-mohair-knit-weyz-01.jpg?v=1765374015"
+                                alt="Item 1" onerror="this.src='https://via.placeholder.com/50'">
+                            <img src="https://weyzclothing.com/cdn/shop/files/ultra-beige-knit-weyz-01.jpg?v=1765362509"
+                                alt="Item 2" onerror="this.src='https://via.placeholder.com/50'">
+                        </div>
+                        <div class="bundle-upsell-info">
+                            <div class="bundle-tags">
+                                <span class="tag-combo">Tu veux les deux ?</span>
+                            </div>
+                            <h3 class="bundle-upsell-title">Ensemble Knit Beige</h3>
+                            <div class="bundle-price-container">
+                                <p class="bundle-upsell-price">149,95 €</p>
+                                <span class="price-old">199,95 €</span>
+                            </div>
+                        </div>
+
+                        <div class="bundle-action-btn">
+                            <svg class="bundle-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Outfit Result -->
+                <div id="ai-outfit-result" class="ai-response-box"></div>
+
+                <!-- Payment Buttons -->
+                <div class="payment-buttons">
+                    <div class="payment-btn payment-btn-apple">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg"
+                            alt="Apple Pay">
+                    </div>
+                    <div class="payment-btn payment-btn-google">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Google_Pay_Logo.svg"
+                            alt="Google Pay">
+                    </div>
+                </div>
+
+                <div class="payment-paypal">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal">
+                </div>
+
+                <!-- Delivery Info -->
+                <div class="delivery-info">
+                    <p class="delivery-text">
+                        Commande avant <strong>17h</strong>, reçois-le entre <strong>09/01</strong> et
+                        <strong>14/01</strong>
+                    </p>
+                    <div class="delivery-timeline">
+                        <div class="timeline-step">
+                            <img src="https://essentials-s3.devbroth.com/essentials-delivery-prod/step1.svg"
+                                class="timeline-icon" alt="Validation">
+                            <span class="timeline-label">Aujourd'hui</span>
+                            <span class="timeline-date">Validation</span>
+                        </div>
+                        <div class="timeline-line">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-bar"></div>
+                            <div class="timeline-dot"></div>
+                        </div>
+                        <div class="timeline-step">
+                            <img src="https://essentials-s3.devbroth.com/essentials-delivery-prod/step2.svg"
+                                class="timeline-icon" alt="Préparation">
+                            <span class="timeline-label">Préparation</span>
+                            <span class="timeline-date">07-08/01</span>
+                        </div>
+                        <div class="timeline-line">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-bar"></div>
+                            <div class="timeline-dot"></div>
+                        </div>
+                        <div class="timeline-step">
+                            <img src="https://essentials-s3.devbroth.com/essentials-delivery-prod/step3.svg"
+                                class="timeline-icon" alt="Livraison">
+                            <span class="timeline-label">Livraison express</span>
+                            <span class="timeline-date">09-14/01</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordions -->
+                <div class="accordions">
+                    <details class="accordion">
+                        <summary>
+                            <div class="accordion-header">
+                                <img src="https://weyzclothing.com/cdn/shop/files/details_80b02ccf-a93d-4c81-b1d2-91c1b310864b.svg?v=1726149978&width=20"
+                                    width="18" alt="">
+                                <span class="accordion-title">Spécifications Premium</span>
+                            </div>
+                            <svg class="accordion-caret" viewBox="0 0 10 6">
+                                <path
+                                    d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 000-.708z"
+                                    fill="currentColor"></path>
+                            </svg>
+                        </summary>
+                        <div class="accordion-content">
+                            Le <strong>Mohair Ultra Knit</strong>. Confectionné en atelier limité.
+                            <p><strong>Composition luxe :</strong></p>
+                            <ul>
+                                <li>• 9% laine vierge d'exception</li>
+                                <li>• 33% nylon technique (durabilité)</li>
+                                <li>• 58% acrylique premium (confort)</li>
+                            </ul>
+                            <p><strong>Détails signature :</strong></p>
+                            <ul>
+                                <li>✓ Texture brossée effet mohair authentique</li>
+                                <li>✓ Motif graphique flou tissé à la main</li>
+                                <li>✓ Coupe boxy architecturée (épaules larges)</li>
+                                <li>✓ Finitions côtelées (col, poignets, ourlet)</li>
+                            </ul>
+                            <p><em>Entretien : Lavage délicat 30° - Séchage à plat</em></p>
+                        </div>
+                    </details>
+
+                    <details class="accordion" id="Details-size">
+                        <summary>
+                            <div class="accordion-header">
+                                <img src="https://weyzclothing.com/cdn/shop/files/size_ba16110a-f3fd-4c61-8145-48b93c410517.svg?v=1726149991&width=20"
+                                    width="18" alt="">
+                                <span class="accordion-title">Tableau des tailles</span>
+                            </div>
+                            <svg class="accordion-caret" viewBox="0 0 10 6">
+                                <path
+                                    d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 000-.708z"
+                                    fill="currentColor"></path>
+                            </svg>
+                        </summary>
+                        <div class="accordion-content">
+                            <p>Notre mannequin (M) : 1m90, 80kg → Porte L pour le fit shooting</p>
+                            <button class="size-calculator-btn" id="open-size-calculator">Calculer ma taille
+                                exacte</button>
+                            <img src="https://weyzclothing.com/cdn/shop/files/knit_ultra_size_chart_weyz.jpg?v=1765360992"
+                                class="size-chart-img" alt="Size Chart">
+                        </div>
+                    </details>
+
+                    <details class="accordion">
+                        <summary>
+                            <div class="accordion-header">
+                                <img src="https://weyzclothing.com/cdn/shop/files/delivery_11c40a30-07dc-4308-aa38-18a25de603ca.svg?v=1726150000&width=18"
+                                    width="18" alt="">
+                                <span class="accordion-title">Livraison & Retours</span>
+                            </div>
+                            <svg class="accordion-caret" viewBox="0 0 10 6">
+                                <path
+                                    d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 000-.708z"
+                                    fill="currentColor"></path>
+                            </svg>
+                        </summary>
+                        <div class="accordion-content">
+                            <p><strong>DÉLAIS DE LIVRAISON :</strong></p>
+                            <ul>
+                                <li>• France Métropolitaine : 3-4 jours ouvrés (Express offerte)</li>
+                                <li>• Europe : 4-5 jours ouvrés (10€)</li>
+                                <li>• International : 7-12 jours (20€)</li>
+                            </ul>
+                            <p><strong>RETOURS & ÉCHANGES :</strong></p>
+                            <ul>
+                                <li>• 14 jours pour changer d'avis</li>
+                                <li>• Retour gratuit en France (étiquette prépayée)</li>
+                                <li>• Échange immédiat (on t'envoie la nouvelle taille dès réception)</li>
+                            </ul>
+                            <p>Support : <a href="mailto:contact@weyzclothing.com">contact@weyzclothing.com</a>
+                                (Réponse < 2h)</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reassurance Section -->
+        <section class="reassurance-section">
+            <div class="reassurance-grid">
+                <div class="reassurance-item">
+                    <svg class="reassurance-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="1" y="3" width="15" height="13"></rect>
+                        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                        <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                        <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                    </svg>
+                    <span class="reassurance-label">Expédition 48h depuis notre atelier Paris</span>
+                </div>
+                <div class="reassurance-item">
+                    <svg class="reassurance-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                        <path d="M3 3v5h5"></path>
+                        <path d="M12 7v5l4 2"></path>
+                    </svg>
+                    <span class="reassurance-label">14j retour gratuit · Échange facilité</span>
+                </div>
+                <div class="reassurance-item">
+                    <svg class="reassurance-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m7 21-4-4 4-4"></path>
+                        <path d="M3 17h18"></path>
+                        <path d="m17 3 4 4-4 4"></path>
+                        <path d="M21 7H3"></path>
+                    </svg>
+                    <span class="reassurance-label">Support humain 7j/7</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fit in Motion Section -->
+        <section class="fit-motion-section">
+            <h2 class="section-title">Le Fit en Vraie Vie</h2>
+            <div class="motion-grid">
+                <div class="motion-video-box">
+                    <img src="https://weyzclothing.com/cdn/shop/files/ultra-beige-knit-weyz-01.jpg?v=1765362509"
+                        alt="Fit Motion 1">
+                    <div class="motion-label">1m80 / Walking à Paris</div>
+                </div>
+                <div class="motion-video-box">
+                    <img src="https://weyzclothing.com/cdn/shop/files/ultra-beige-knit-weyz-02.jpg?v=1765362509"
+                        alt="Fit Motion 2">
+                    <div class="motion-label">Au Café / Taille M</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Marquee Reviews Cards -->
+        <div class="marquee-container">
+            <div class="marquee-track">
+                <!-- Groupe 1 (Originaux) -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-stars">★★★★★</span>
+                        <span class="review-verified">✓ Vérifié</span>
+                    </div>
+                    <p class="review-quote">"Le meilleur mohair que j'ai eu, coupe parfaite."</p>
+                    <p class="review-author">Lucas P.</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-stars">★★★★★</span>
+                        <span class="review-verified">✓ Vérifié</span>
+                    </div>
+                    <p class="review-quote">"Reçu en 48h, qualité dingue."</p>
+                    <p class="review-author">Sarah M.</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-stars">★★★★★</span>
+                        <span class="review-verified">✓ Vérifié</span>
+                    </div>
+                    <p class="review-quote">"Incroyable le fit, je recommande."</p>
+                    <p class="review-author">Thomas R.</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-stars">★★★★★</span>
+                        <span class="review-verified">✓ Vérifié</span>
+                    </div>
+                    <p class="review-quote">"Vaut largement le prix."</p>
+                    <p class="review-author">Amine B.</p>
+                </div>
+
+                <!-- Groupe 2 (Dupliqués pour boucle infinie) -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-stars">★★★★★</span>
+                        <span class="review-verified">✓ Vérifié</span>
+                    </div>
+                    <p class="review-quote">"Le meilleur mohair que j'ai eu, coupe parfaite."</p>
+                    <p class="review-author">Lucas P.</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-stars">★★★★★</span>
+                        <span class="review-verified">✓ Vérifié</span>
+                    </div>
+                    <p class="review-quote">"Reçu en 48h, qualité dingue."</p>
+                    <p class="review-author">Sarah M.</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-stars">★★★★★</span>
+                        <span class="review-verified">✓ Vérifié</span>
+                    </div>
+                    <p class="review-quote">"Incroyable le fit, je recommande."</p>
+                    <p class="review-author">Thomas R.</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-stars">★★★★★</span>
+                        <span class="review-verified">✓ Vérifié</span>
+                    </div>
+                    <p class="review-quote">"Vaut largement le prix."</p>
+                    <p class="review-author">Amine B.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="request-zone">
+                <h3 class="faq-subtitle">Une question sur ce pull ?</h3>
+                <p class="faq-description">Notre équipe de stylistes te répond en direct</p>
+                <textarea id="ai-query" class="faq-textarea"
+                    placeholder="Je cherche le fit parfait pour 1m75..."></textarea>
+
+                <div class="faq-buttons">
+                    <button type="button" id="submit-manual" class="faq-submit-btn">Envoyer ma question</button>
+                    <button type="button" id="ai-ask" class="ai-btn">
+                        <span>Assistant Style IA</span>
+                    </button>
+                </div>
+                <div id="ai-faq-response" class="ai-response-box"></div>
+            </div>
+
+            <div class="faq-accordion">
+                <h3 class="faq-accordion-title">Questions Fréquentes</h3>
+
+                <details class="accordion">
+                    <summary>
+                        <span class="accordion-title">"Boxy fit" = comment choisir ma taille ?</span>
+                        <svg class="accordion-caret" viewBox="0 0 10 6">
+                            <path
+                                d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 000-.708z"
+                                fill="currentColor"></path>
+                        </svg>
+                    </summary>
+                    <div class="accordion-content faq-answer">
+                        Notre coupe boxy est faite pour être légèrement oversize. Prends <strong>TA TAILLE
+                            HABITUELLE</strong> pour le fit parfait. Pour un style ultra-relax, surtaille d'une taille.
+                    </div>
+                </details>
+
+                <details class="accordion">
+                    <summary>
+                        <span class="accordion-title">Ça gratte le mohair ?</span>
+                        <svg class="accordion-caret" viewBox="0 0 10 6">
+                            <path
+                                d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 000-.708z"
+                                fill="currentColor"></path>
+                        </svg>
+                    </summary>
+                    <div class="accordion-content faq-answer">
+                        Absolument pas. On a travaillé la fibre pendant 6 mois. Résultat : une texture de couverture
+                        douce, zéro démangeaison. Testé et validé par 500+ clients.
+                    </div>
+                </details>
+            </div>
+        </section>
+    </main>
+
+    <!-- Size Calculator Modal -->
+    <div id="size-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-close" id="close-size-calculator">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </div>
+            <h2 class="modal-title">Trouve ta taille en 30 secondes</h2>
+
+            <div class="modal-input-group">
+                <label>Ta taille (cm)</label>
+                <input type="number" id="input-height" placeholder="ex: 180">
+            </div>
+            <div class="modal-input-group">
+                <label>Ton poids (kg)</label>
+                <input type="number" id="input-weight" placeholder="ex: 75">
+            </div>
+
+            <button class="calculate-btn" id="run-calculation">→ Calculer ma taille</button>
+
+            <div class="result-zone" id="size-result">
+                <p class="result-label">Taille recommandée :</p>
+                <span class="result-size" id="recommended-size">L</span>
+                <p class="result-confidence">90% de nos clients satisfaits avec cette recommandation</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bundle Modal -->
+    <div id="bundle-modal" class="bundle-modal-overlay">
+        <div class="bundle-modal-backdrop" onclick="closeBundleModal()"></div>
+        <div class="bundle-modal">
+            <button onclick="closeBundleModal()" class="modal-close">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <h2 class="bundle-modal-title">WEYZ COMBO PACK</h2>
+            <p class="bundle-modal-subtitle">Sélectionne tes tailles pour le pack duo.
+            </p>
+
+            <div class="bundle-products">
+                <div class="bundle-product">
+                    <p class="bundle-product-label">1. Ultra Mohair Beige (94,95 €)</p>
+                    <div class="bundle-sizes" id="bundle-size-1">
+                        <button class="bundle-size-btn" data-size="S">S</button>
+                        <button class="bundle-size-btn" data-size="M">M</button>
+                        <button class="bundle-size-btn" data-size="L">L</button>
+                        <button class="bundle-size-btn" data-size="XL">XL</button>
+                    </div>
+                </div>
+                <div class="bundle-product">
+                    <p class="bundle-product-label">2. W-Pant Baggy Noir (94,95 €)</p>
+                    <div class="bundle-sizes" id="bundle-size-2">
+                        <button class="bundle-size-btn" data-size="S">S</button>
+                        <button class="bundle-size-btn" data-size="M">M</button>
+                        <button class="bundle-size-btn" data-size="L">L</button>
+                        <button class="bundle-size-btn" data-size="XL">XL</button>
+                    </div>
+                </div>
+            </div>
+
+            <p class="bundle-old-total"><strong>149,95 €</strong></p>
+            <button onclick="addBundleToCart()" class="bundle-submit">Ajouter le pack</button>
+        </div>
+    </div>
+
+    <!-- SIDE CART -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h2 class="cart-title">Ton Panier</h2>
+            <button onclick="toggleCart()" class="cart-close">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M18 6L6 18M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <p class="cart-empty">Ton panier est vide.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>TOTAL</span>
+                <span id="cart-total">0,00 €</span>
+            </div>
+            <button class="checkout-btn" onclick="window.location.href='checkout.html'">Payer</button>
+            <p class="cart-trust">Paiement sécurisé · Livraison 48h</p>
+            <div class="payment-icons">
+                <img src="https://www.vectorlogo.zone/logos/visa/visa-ar21.svg" alt="Visa">
+                <img src="https://www.vectorlogo.zone/logos/mastercard/mastercard-ar21.svg" alt="Mastercard">
+                <img src="https://www.vectorlogo.zone/logos/apple_pay/apple_pay-ar21.svg" alt="Apple Pay">
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Buy Bar -->
+    <div id="sticky-buy-bar" class="sticky-buy-bar">
+        <div class="sticky-info">
+            <img src="https://weyzclothing.com/cdn/shop/files/beige-ultra-mohair-knit-weyz-01.jpg?v=1765374015"
+                alt="Ultra Mohair" onerror="this.src='https://via.placeholder.com/50'">
+            <div class="sticky-text-group">
+                <div class="sticky-name">Pull Mohair Beige</div>
+                <div class="sticky-price">94,95 €</div>
+            </div>
+        </div>
+
+        <div class="sticky-actions">
+            <select id="sticky-size" class="sticky-select">
+                <option value="" disabled selected>Taille</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+            </select>
+
+            <button class="sticky-add-btn" onclick="addToCartFromSticky()">
+                <svg class="sticky-cart-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                </svg>
+                <span class="sticky-btn-text">Ajouter</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3 class="footer-title">COMMUNAUTÉ WEYZ</h3>
+                <p class="footer-text">Abonne-toi pour accéder en avant-première aux drops limités</p>
+                <input type="email" placeholder="ton email" class="footer-input">
+                <button class="footer-subscribe-btn">S'inscrire</button>
+            </div>
+            <div class="footer-column">
+                <h3 class="footer-title">SUIVEZ-NOUS</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">TikTok</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 class="footer-title">AIDE</h3>
+                <ul class="footer-links">
+                    <li><a href="mailto:contact@weyzclothing.com">contact@weyzclothing.com</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 WEYZ. Tous droits réservés. | Conçu à Paris</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        // Product page specific functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            initProductPage();
+        });
+    </script>
+</body>
+
+</html>
