@@ -252,7 +252,7 @@
                 const { error } = await stripe.redirectToCheckout({
                     lineItems: lineItems,
                     mode: 'payment',
-                    successUrl: window.location.origin + '/success.html',
+                    successUrl: 'https://e-com-inky-nu.vercel.app/success.html',
                     cancelUrl: window.location.href,
                     shippingAddressCollection: {
                         allowedCountries: ['FR', 'BE', 'CH', 'LU', 'MC']
